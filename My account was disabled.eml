@@ -1,0 +1,121 @@
+Delivered-To: spencersouthern12@gmail.com
+Received: by 2002:a05:6f02:4447:b0:113:e616:eeb2 with SMTP id s7csp2619550rch;
+        Sun, 18 Jan 2026 04:03:53 -0800 (PST)
+X-Received: by 2002:a05:622a:40d:b0:4f1:c7b3:b180 with SMTP id d75a77b69052e-502a1e8e370mr117149601cf.36.1768737832811;
+        Sun, 18 Jan 2026 04:03:52 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768737832; cv=none;
+        d=google.com; s=arc-20240605;
+        b=PUSbqfi1HetJMpImn7H7c3kPjg7hlOQhI6+mayPAzTSAYtTNn4yE7GjQrNHWsyB3fw
+         JNt0caydvs/boscBL98CO9fumEdL01EabteiCl7Sg3EkahhZfDN1Pbu22+nYp53y08Dy
+         XeSoJbMziIRaO5tBuG5+T/2FCIdUSSvHhbVJWCNaqJnRn8Oll9+q9N1mVQKVHxWGzdmf
+         xdrAwxA4xhhE0ZUpFZhbAYV+6KTyMnaCQDYbHvgpaf8qIO7ESp/T75QesfRBoOdRmAZ0
+         /4sAtLHTjfk/cpRA0p2fHd5JW8/ZtlG48YE9z8myt/WFOJRUijZ46KPDENBOgr6PDz6i
+         ZiOw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=mime-version:date:message-id:cfbl-feedback-id:cfbl-address
+         :auto-submitted:subject:to:from:dkim-signature:dkim-signature;
+        bh=tlWHcxPHVO2l7ABVO76K6OnT366U1xYQ9/lyFWRJLxs=;
+        fh=k/D6LbyC4hlFyZEQDh/NSK+h6LqufNFe9n5DXAw285Q=;
+        b=e9RmzGy3z495nZldBuSuJRocCDMfj0bj8ANhyntmhTO/xRSMpAU+LCdIMxQ+Kx1qHA
+         IasJdPW0jBEuBw+PP7ywYvIwdaqiHRK+kAZh5dphf11/lmkrZ0Ipoj66x7Nfk3egSTRi
+         A1SI8++VQY+8My3nrnP+Sp6/s3H5yNy6xzN+sDDl8D80n7qWPJ0DbtfWXX8I7qJ7XX6z
+         hTK/JBZC47bXfcFtD76CgA3MYmLUeiuaDD5FTP91su+ZIxPuH3Xgr51FSzAqnf8M9RYO
+         olHKK9ZEjUjTF1YlfCYa0DDiALlUP4dZfLcL31gmylOJugQhUbVsJJ6gwIEhfvchsKKQ
+         A5Pg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@osf.io header.s=strong1 header.b=cxkps9VM;
+       dkim=pass header.i=@helpscout.net header.s=strong1 header.b=rlmcbU4R;
+       spf=pass (google.com: domain of j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net designates 54.174.116.32 as permitted sender) smtp.mailfrom=j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=osf.io
+Return-Path: <j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net>
+Received: from mail5.helpscout.net (mail5.helpscout.net. [54.174.116.32])
+        by mx.google.com with ESMTPS id d75a77b69052e-502a200a50fsi97792801cf.441.2026.01.18.04.03.52
+        for <spencersouthern12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);
+        Sun, 18 Jan 2026 04:03:52 -0800 (PST)
+Received-SPF: pass (google.com: domain of j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net designates 54.174.116.32 as permitted sender) client-ip=54.174.116.32;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@osf.io header.s=strong1 header.b=cxkps9VM;
+       dkim=pass header.i=@helpscout.net header.s=strong1 header.b=rlmcbU4R;
+       spf=pass (google.com: domain of j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net designates 54.174.116.32 as permitted sender) smtp.mailfrom=j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net;
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=osf.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=strong1; d=osf.io;
+ h=From:To:Subject:X-Msg-Context:CFBL-Address:CFBL-Feedback-ID:Message-Id:Date:
+ Content-Type:MIME-Version:from:to:subject:reply-to:cc; i=support@osf.io;
+ bh=tlWHcxPHVO2l7ABVO76K6OnT366U1xYQ9/lyFWRJLxs=;
+ b=cxkps9VMSdtBn6Wi1agRg25VZDntNE1JOEpGZ7c/hc/hG7+NGFgz5fNpvpkPU5JDMyyrjAYlqiq1
+   0i2jsxg6ESEKVIRKddSshQsw/HX7RL2UjJn8ITOZ77dNTCEPnFoLmRAzJFLTWf9imCVCotOqufo1
+   d7TCXZOVEbLBxAcoGiE=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; s=strong1; d=helpscout.net;
+ h=From:To:Subject:X-Msg-Context:CFBL-Address:CFBL-Feedback-ID:Message-Id:Date:
+ Content-Type:MIME-Version:from:to:subject:reply-to:cc;
+ bh=tlWHcxPHVO2l7ABVO76K6OnT366U1xYQ9/lyFWRJLxs=;
+ b=rlmcbU4R4hljWkmukLkkS5b8Griv09GDTYwM6hE2lxPmS3XtH8nzIUWcdAAklKy8XoUx2yXUSlAl
+   Ui6BiDcz+al6GDeZ9Lkxz9F14AhhKOVTN7n0b+QahwqUy6qw4OZNmNfN0eDwG6G/7qlOcedj8q6F
+   qhysHDK9chDc3uZgOCo=
+Received: by mail5.helpscout.net id hdj62g3bct8a for <spencersouthern12@gmail.com>; Sun, 18 Jan 2026 12:03:33 +0000 (envelope-from <j6n18j7d2w.2jr4gy7wlk+v1@bounce.helpscout.net>)
+From: OSF Support <support@osf.io>
+To: Spencer Southern <spencersouthern12@gmail.com>
+Subject: Re: My account was disabled
+X-Msg-Context: HS-2-262389-3202062719-9758317254
+Auto-Submitted: auto-replied
+X-Report-Abuse: Please forward a copy of this message, including all headers, to abuse@helpscout.net
+X-Hs-Cid: 133862
+CFBL-Address: fbl@helpscout.net; report=arf
+CFBL-Feedback-ID: HS-1-262389-3202062719-9758317254
+X-Hs-State: 3
+Message-Id: <reply-133862-3202062719-9758317254-1768737813-1379592112@helpscout.net>
+X-Msg-Timestamp: 2026-01-18T12:03:33+00:00
+Date: Sun, 18 Jan 2026 12:03:33 +0000
+Content-Type: multipart/alternative;
+ boundary="=_6bb0451ea85308cf7d2be9d3e640c36b"
+MIME-Version: 1.0
+
+--=_6bb0451ea85308cf7d2be9d3e640c36b
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+-- Please reply above this line --=0A=0A=0AHello Spencer,=0A=0AThank you=
+ for contacting OSF support. We aim to respond to emails in=0A48-72 hour=
+s.=C2=A0=0A=0AIf you would like to provide feedback on the new user inte=
+rface please=0Ause this FORM [1].=0A=0ATo limit the time required to res=
+olve your issue, please provide as=0Amuch information as possible includ=
+ing:=0A*a URL for the project/registration you are having issues with=0A=
+*screenshots of the issue=0A* your OSF user ID and the ID of your projec=
+t/registration/preprint=0A* the date/time you saw the issue=0A* the brow=
+ser and version you're running=0A* any error messages=0A=0AYou can also=
+ browse our Guides (https://help.osf.io/ [2]) to see if=0Ayour question=
+ has already been answered. You can check the status of=0Aour services a=
+t http://status.cos.io [3] and subscribe to updates.=0ATo add additional=
+ comments, reply to this email.=0A=0A=0ALinks:=0A------=0A[1] https://fo=
+rms.office.com/r/EzmenkmxEK=0A[2] https://help.osf.io/=0A[3] http://stat=
+us.cos.io/=0A=0A=0A
+
+--=_6bb0451ea85308cf7d2be9d3e640c36b
+Content-Type: text/html; charset=UTF-8
+Content-Transfer-Encoding: quoted-printable
+
+<html lang=3D"en">=0A<head>=0A=09<meta content=3D"text/html; charset=3Du=
+tf-8" http-equiv=3D"Content-Type">=0A</head>=0A<body bgcolor=3D"#ffffff"=
+>=0A=09<div id=3D"hsReplyAbove" class=3D"hsReplyAbove">=0A=09=09<div sty=
+le=3D"font-family:sans-serif;">=0A=09=09=09<div>Hello Spencer,<br><br>Th=
+ank you for contacting OSF support. We aim to respond to emails in 48-72=
+ hours.&nbsp;<br><br>If you would like to provide feedback on the new us=
+er interface please use this <a href=3D"https://forms.office.com/r/Ezmen=
+kmxEK">FORM</a>.<br><br>To limit the time required to resolve your issue=
+, please provide as much information as possible including:<br>*a URL fo=
+r the project/registration you are having issues with<br>*screenshots of=
+ the issue<br>* your OSF user ID and the ID of your project/registration=
+/preprint<br>* the date/time you saw the issue<br>* the browser and vers=
+ion you're running<br>* any error messages<br><br>You can also browse ou=
+r Guides (<a href=3D"https://help.osf.io/">https://help.osf.io/</a>) to=
+ see if your question has already been answered. You can check the statu=
+s of our services at <a href=3D"http://status.cos.io/">http://status.cos=
+.io</a> and subscribe to updates.<br>To add additional comments, reply t=
+o this email.<br></div>=0A=09=09</div>=0A=09</div>=0A=09<span height=3D"=
+0" style=3D"font-size: 0px; height:0px; line-height: 0px; color:#ffffff;=
+" id=3D"hsContentRef">{#HS:3202062719-1728019#}</span>=0A    </body>=0A<=
+/html>=0A
+
+--=_6bb0451ea85308cf7d2be9d3e640c36b--

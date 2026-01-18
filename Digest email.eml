@@ -1,0 +1,505 @@
+Delivered-To: spencersouthern12@gmail.com
+Received: by 2002:a05:6f02:4447:b0:113:e616:eeb2 with SMTP id s7csp1542235rch;
+        Fri, 16 Jan 2026 03:30:02 -0800 (PST)
+X-Received: by 2002:a17:90b:1f82:b0:343:6108:1712 with SMTP id 98e67ed59e1d1-352732570c1mr2010412a91.18.1768563001722;
+        Fri, 16 Jan 2026 03:30:01 -0800 (PST)
+ARC-Seal: i=1; a=rsa-sha256; t=1768563001; cv=none;
+        d=google.com; s=arc-20240605;
+        b=X1/jI30Nk3JacDXREI667+mqYDLyS2Jrr87qN5dYPQQiCbiZzOpdtBNUm1V8k+NsEV
+         Qi1AUU3OOQX1QaZ50+UsOYck5RfVvdF1cjDzYmu+eAK6dbelbqu8B1ztKJkINcjv3GeY
+         XuRMj2lbDdjKLIhFOJEnEVGOHtMeocquS/UZaEO/TGMwnO33F9DM9E7di8JLxuSIpGc2
+         tHiK4LRno4I1tqy3Xd60ZX6Ii1NajlV9RrBGUe3DAgfg89GiWWO9qUd2wCz+KbZtPHIo
+         tttSaFQbCjOompi258kfMVi2ZuLdrTbayMiqc3HpWgW665zaKDYRO891iEQUGXofh8rg
+         RFQw==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20240605;
+        h=to:subject:message-id:mime-version:from:date
+         :content-transfer-encoding:dkim-signature:dkim-signature;
+        bh=bY2UHoUn4lo/zPaBKElpOEdd+vjufezYQ+gnVGkgpGw=;
+        fh=c6XWP2a8Zi0Z+7I7lxsEW19yJPZFZtqXLYmEDubjBRE=;
+        b=Uk3eiSed9GXf2cM1QDcFzYR+adftJI6URVow5AlZskCvZsXnlyRHNa4HJhq07oDaII
+         f5YU7SSVMwDimgb+lhxpLyBHwxsJ4eRR7UCF8HEu82d8D1D/JYlZJJDxhHnFTGm+6FQG
+         qL6mf/ONGV+nwdHvN0F911IJJaE5I05BxtCZQpFgFoPeR3/ZaI3CEJSkbPHXpycuHrLi
+         Z3c9VdBAUPcJHfd6k3x7wXCdRfv4v9QZK3SVyT2PEgy9YdaYVfM0wEjSYhgBJ2mgNDl8
+         Nrf6DYK+8x3VaPmRZmjcve3Nl4Jp8Pi3uiGpE23OswmVgC/cvyIPCVyWE84dIlCsFymv
+         Snqg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@osf.io header.s=m1 header.b="eFUI3j/r";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=HeIpd+HL;
+       spf=pass (google.com: domain of bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io designates 159.183.95.200 as permitted sender) smtp.mailfrom="bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=osf.io
+Return-Path: <bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io>
+Received: from o1.ptr8581.osf.io (o1.ptr8581.osf.io. [159.183.95.200])
+        by mx.google.com with ESMTPS id 41be03b00d2f7-c5edf5da19asi2898962a12.287.2026.01.16.03.30.01
+        for <spencersouthern12@gmail.com>
+        (version=TLS1_3 cipher=TLS_AES_128_GCM_SHA256 bits=128/128);
+        Fri, 16 Jan 2026 03:30:01 -0800 (PST)
+Received-SPF: pass (google.com: domain of bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io designates 159.183.95.200 as permitted sender) client-ip=159.183.95.200;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@osf.io header.s=m1 header.b="eFUI3j/r";
+       dkim=pass header.i=@sendgrid.info header.s=smtpapi header.b=HeIpd+HL;
+       spf=pass (google.com: domain of bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io designates 159.183.95.200 as permitted sender) smtp.mailfrom="bounces+667348-b889-spencersouthern12=gmail.com@dkim.osf.io";
+       dmarc=pass (p=QUARANTINE sp=QUARANTINE dis=NONE) header.from=osf.io
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=osf.io;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	to:cc:content-type:date:feedback-id:from:subject:to;
+	s=m1; bh=bY2UHoUn4lo/zPaBKElpOEdd+vjufezYQ+gnVGkgpGw=;
+	b=eFUI3j/rPZ5f6IIMSSIzDD6UbVqqkW2ZgBhhyDSz2grS/HtjTF+6LiByz+hT8WK+1tcG
+	S/8nJfLI66H7As5fK3LWNtSnkoHTnDlj5zYqmO1UcOetp16ihBC/OagIkxUdl8vRqwoX2R
+	OGA+m0jJk06Cnk7ec620cJXhxnJ/cfCiA=
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=sendgrid.info;
+	h=content-transfer-encoding:content-type:date:from:mime-version:subject:
+	to:cc:content-type:date:feedback-id:from:subject:to;
+	s=smtpapi; bh=bY2UHoUn4lo/zPaBKElpOEdd+vjufezYQ+gnVGkgpGw=;
+	b=HeIpd+HL0BOlkGftq+sfCYKroks8tX+2pYUSMWwkW2cCIH7deYMRO37vD/HNtRB7Xwsj
+	eYQ95Qb39kA+jBCU8XjEsu8P5hBS5N/8uDFT5pM+TKyhULYKeMWPnT8TBp3svGVQIrHhs6
+	aDYUOiw1cZj+Iq5vPjOVo9LszbCElAMGs=
+Received: by recvd-77c97b74bf-qbd5z with SMTP id recvd-77c97b74bf-qbd5z-1-696A2138-11
+	2026-01-16 11:30:00.542581529 +0000 UTC m=+2553511.759699078
+Received: from NjY3MzQ4 (unknown)
+	by geopod-ismtpd-28 (SG) with HTTP
+	id 2VhtdwlzR4yWjj8-Qd0jRA
+	Fri, 16 Jan 2026 11:30:00.515 +0000 (UTC)
+Content-Transfer-Encoding: quoted-printable
+Content-Type: text/html; charset=us-ascii
+Date: Fri, 16 Jan 2026 11:30:00 +0000 (UTC)
+From: openscienceframework-noreply@osf.io
+Mime-Version: 1.0
+Message-ID: <2VhtdwlzR4yWjj8-Qd0jRA@geopod-ismtpd-28>
+Subject: Digest email
+X-SG-EID: 
+ =?us-ascii?Q?u001=2EQ2mnY8R44eNbkjvyKJH41SDIseyd06yuipUIHmgZBDuOIc+U+zNgorQep?=
+ =?us-ascii?Q?f0aoQaXbbgsts8cJjl0BjCNuI1bu4XnkxvG++gz?=
+ =?us-ascii?Q?t=2Foho4SRzZ6y=2FCFuvQNav+JVtywauFn36cwSDf1?=
+ =?us-ascii?Q?9xLp+IKvwdPjUQSSwLdt9BVqLY7y7UFl2tZojV3?=
+ =?us-ascii?Q?sx7FDwk8IdqhG3VBGpN1=2FJlSXTD9TWfahf7orBc?=
+ =?us-ascii?Q?tGRwLhDLDOc43PFWJjOb8k=3D?=
+To: spencersouthern12@gmail.com
+X-Entity-ID: u001.iR/YNFrXJFRjJEETHsgepg==
+
+<!doctype html>
+<html class=3D"no-js" lang=3D"">
+<head>
+    <meta charset=3D"utf-8">
+    <meta http-equiv=3D"X-UA-Compatible" content=3D"IE=3Dedge">
+    <meta http-equiv=3D"content-type" content=3D"text/html; charset=3DUTF-8=
+">
+    <meta name=3D"description" content=3D"Center for Open Science Notificat=
+ions">
+    <meta name=3D"viewport" content=3D"width=3Ddevice-width, initial-scale=
+=3D1">
+</head>
+
+
+
+<body leftmargin=3D"0" marginwidth=3D"0" topmargin=3D"0" marginheight=3D"0"=
+ offset=3D"0"
+      style=3D"-webkit-text-size-adjust: none;font-family: Helvetica, Arial=
+, sans-serif;background: #eeeeee;padding: 0;margin: 0;border: none;list-sty=
+le: none;width: 100% !important;">
+    <table id=3D"layout-table" width=3D"100%" border=3D"0" cellpadding=3D"0=
+" cellspacing=3D"0">
+        <tr>
+            <td style=3D"border-collapse: collapse;">
+                <table width=3D"100%" border=3D"0" cellpadding=3D"10" cells=
+pacing=3D"0" height=3D"100%">
+                    <tbody>
+                        <tr class=3D"banner" style=3D"background: #214762;c=
+olor: white;">
+                            <td class=3D"text-center" style=3D"border-colla=
+pse: collapse;text-align: center;">
+                                <table id=3D"header-logo" border=3D"0" cell=
+padding=3D"0" cellspacing=3D"0" style=3D"margin: 0 auto;padding: 0;">
+                                    <tr>
+                                        <td style=3D"border-collapse: colla=
+pse;padding: 12px 0;">
+                                                <img src=3D"https://osf.io/=
+static/img/osf_logo.png"
+                                                     alt=3D" logo"
+                                                     style=3D"border:0;heig=
+ht:auto;line-height:100%;outline:none;text-decoration:none;max-height:100px=
+;">
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+
+        <tr>
+          <td style=3D"border-collapse: collapse;">
+            <table id=3D"content" width=3D"600" border=3D"0" cellpadding=3D=
+"25" cellspacing=3D"0" align=3D"center"
+                   style=3D"margin: 30px auto 0 auto;background: #ffffff;bo=
+x-shadow: 0 0 2px #ccc;">
+              <tbody>
+               =20
+<tr>
+  <td style=3D"border-collapse: collapse;">
+    <h3 class=3D"text-center" style=3D"padding: 0;margin: 0;border: none;li=
+st-style: none;font-weight: 300;text-align: center;">
+      Recent Activity
+    </h3>
+  </td>
+</tr>
+<tr>
+  <td style=3D"border-collapse: collapse;">
+      <table class=3D"block" width=3D"100%" border=3D"0" cellpadding=3D"15"=
+ cellspacing=3D"0" align=3D"center">
+        <tbody>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:26:58.159753+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                created folder "<b>Ticket_Security_Flow_Would_Work/</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzV3hgp_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEAWi3xHBep-2Fa707KykMopIWwk-2BeFqclNJvrUD9pxS57qEJBEeBiK47DILGr4ta=
+5CnpetIP9Q43c5-2ByNJzlZLYgE-2B7vyDtLi-2BwPctgvMgt3T7igEbN32PrO2k7bS7FHs2cg-=
+3D-3D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;text=
+-decoration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:27:41.135199+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Ticket_Secur=
+ity_Flow_Would_Work.md</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVc-QU_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEMQYiK30w3gNA1CrP-2BhSrXrNevkYvd8U-2F9Dqiaw7I-2Fted-2BeZdcrZLzktpJ=
+p8jG57FktXbQ-2FiSzxrbCws2mSkl2KqHgTh7txzLzGjMrvSh-2BOnAj9WW3Kj4Og0QhLD9fxjS=
+Q-3D-3D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;te=
+xt-decoration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:27:41.278914+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Ticket_Secur=
+ity_Flow_Would_Work_hashes.txt</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVnCtc_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEIo3mxG6YHrrJzsnaummI8ZhOgY4q6DHTpPDZuElDtVGRqxvom1ah-2B-2FhdDzRyz=
+ojA8-2FiHULDYncMq8hZEiifTltoh0hZULxhx5Iiq0PYf2gF7ovYFMbyMKFBwkGcd2qTmw-3D-3=
+D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;text-dec=
+oration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:28:02.172626+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Screenshot 2=
+026-01-16 062508.png</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVKSzT_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEEovPdIVv2JC-2BD51YuCzzipuSTGtgT-2B1qH14RvmQk8Otcb5ruBpGahK5R6Zud3=
+-2BF04-2BTLlcd0kxXn1BtdmXv4-2F80cSw9NhPZEIyk9xkSHK8JUrQxUh14Vqk5OwQS51erjg-=
+3D-3D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;text=
+-decoration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:28:02.641986+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Ticket_Secur=
+ity_Flow_Would_Work.docx</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVcpA9_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEMosxexEM8b4k7upHiLuO8IW4CJ6KHlurEC9qmB1xLHCFEYPsQZt2mqTQ3-2BgOsoo=
+Pr43Sg69ULhnv-2B3l1jT0CjMKVRANp8l3IqkclWFxvyHbKtO3VLa0K3daWp0NIsAupg-3D-3D"=
+ style=3D"margin: 0;border: none;list-style: none;color: #008de5;text-decor=
+ation: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:28:03.313212+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Screenshot 2=
+026-01-16 062448.png</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVe53k_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEFLX4ziW8iP-2BzkWs7ZgolNYqyBsurpSHe2OwiUOcPzVWqmxgPme1VLu1X-2FVAUq=
+gghJUZAHhMSt-2BEvQwTKx6mFUZLw1mNgpFnUNI2Zl9uLhgZtIhtvzTgpQXEMgdCZ7omog-3D-3=
+D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;text-dec=
+oration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+            <tr>
+              <td style=3D"border-collapse: collapse;">
+                <table class=3D"comment-row" border=3D"0" cellpadding=3D"8"=
+ cellspacing=3D"0" width=3D"100%" align=3D"center" style=3D"font-size: 13px=
+;background: #fff;border: 1px solid #eee;border-radius: 5px;margin-bottom: =
+10px;padding: 0px !important;">
+    <tr>
+        <td width=3D"40" class=3D"icon" valign=3D"middle" style=3D"border-c=
+ollapse: collapse;font-size: 24px;color: #999;"> <img class=3D"avatar" src=
+=3D"https://secure.gravatar.com/avatar/146375feaf85cc0c836b6edcfff8d57b?d=
+=3Didenticon" width=3D"48" alt=3D"avatar" style=3D"border: 0;height: auto;l=
+ine-height: 100%;outline: none;text-decoration: none;border-radius: 25px;">=
+ </td>
+        <td style=3D"line-height: 17px;border-collapse: collapse;">
+            <span class=3D"timestamp" style=3D"color: grey;">At 2026-01-16 =
+11:28:10.053856+00:00: </span>
+            <span class=3D"content" style=3D"display: block;padding: 6px 5p=
+x 0px 8px;font-size: 14px;">
+                <span class=3D"person" style=3D"font-weight: bold;">Spencer=
+ Southern </span>
+                added file "<b>Ticket_Security_Flow_Would_Work/Ticket_Secur=
+ity_Flow_Would_Work.pdf</b>".
+            </span>
+        </td>
+        <td width=3D"25" style=3D"text-align:center;border-collapse: collap=
+se;font-size: 24px;border-left: 1px solid #ddd;">
+            <a href=3D"https://u667348.ct.sendgrid.net/ls/click?upn=3Du001.=
+S8soklEDF2emwd6b3C6IclGcvvJDO4PNife7mL22451Xcm-2BQVyUorFjlqyRBPWzVh9V9_2S6N=
+wjS1o2wTM9YIF6OE2Glg-2BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2=
+F2xFw7WejEJGSVWyNVOjJXOtQdYCGrYZA7JtDwcYITTEOerAPSWfbg7qcCFYZTT3GJpe-2F-2FG=
+6XNM1mc22Cq1j144oOO-2FwCVydotal7vRyUBdJv-2BtIwoI5TG9hkvpnOgfReKwApBi9Ldw-3D=
+-3D" style=3D"margin: 0;border: none;list-style: none;color: #008de5;text-d=
+ecoration: none;">
+                &#10095;
+            </a>
+        </td>
+    </tr>
+</table>
+
+              </td>
+            </tr>
+        </tbody>
+      </table>
+  </td>
+</tr>
+
+              </tbody>
+            </table>
+
+          </td>
+        </tr>
+
+        <tr>
+            <td style=3D"border-collapse: collapse; padding-top: 15px;">
+                <table width=3D"80%" border=3D"0" cellpadding=3D"10" cellsp=
+acing=3D"0" align=3D"center" class=3D"footer"
+                       style=3D"margin-top: 45px;padding: 25px 0 35px;backg=
+round-color: #f4f4f4;border-top: 1px solid #E5E5E5;border-bottom: 1px solid=
+ #E5E5E5;width: 100%;color: #555;">
+                    <tbody>
+                        <tr>
+                            <td style=3D"border-collapse: collapse;">
+                                <p class=3D"text-smaller text-center" style=
+=3D"text-align: center;font-size: 12px;margin: 0 0 6px 0;">
+                                    Copyright &copy; 2025
+                                    Center For Open Science, All rights res=
+erved. |
+                                    <a href=3D"https://u667348.ct.sendgrid.=
+net/ls/click?upn=3Du001.dlh3IcXmJW9DuR-2FB-2FtldpPJMPHEVjDnJLm1lizYQiar-2BP=
+s9oqiv1FzabhFTEzlmGK5tyVXomTZksB8fZR-2FsdQ7XV7SySE8A54tkI5jye-2BkZPW98UJQMI=
+l-2BHEi3ixQQa-2FZpHTkqjETNp1osmQa8JE0A-3D-3DfWRK_2S6NwjS1o2wTM9YIF6OE2Glg-2=
+BFq9ZmOz67XDjWsQvLtn2RWzFdRYY6YRFY7isuBbBVx8TPJ0Exg-2F2xFw7WejEOUq7uQ9wkF8E=
+ZaXSVTJoPxRW73-2BXePX5g4pGGwInggXXneTSYEX-2B1gFTVkh4caeAD9N6BjU3RS8SlzA-2Fu=
+OjjI6hFMGW-2F8mHZrQAV4SUHle3lis9pUshQ6Sj4h7H-2B4gjKw-3D-3D">Privacy Policy<=
+/a>
+                                </p>
+                                <p class=3D"text-smaller text-center" style=
+=3D"text-align: center;font-size: 12px;margin: 0 0 6px 0;">
+                                    210 Ridge McIntire Road, Suite 500, Cha=
+rlottesville, VA 22903-5083
+                                </p>
+                                <p class=3D"text-smaller text-center" style=
+=3D"text-align: center;font-size: 12px;margin: 0;">
+                                   =20
+    Questions? Email <a href=3D"mailto:contact@osf.io">contact@osf.io</a>
+
+                                </p>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </table>
+<img src=3D"https://u667348.ct.sendgrid.net/wf/open?upn=3Du001.W0kheuz2fXNu=
+ReHXz8E1USFWlYz-2ByBHY6ZxQA5a8f9BXk2M2Y0tv0VaefTUkvKM-2Be0mAH0pSHECbHBf-2BW=
+pxL9bsUcsiv25Ovex6CWBk8sfh1As-2B7uEKIwcZr87Y8T-2FC5WU1SYiMOTdgabNVqtkOUplXF=
+l2f4m4qAC1t2-2BqJqdjhSGeEeglQ19Ac7S31WARK9x97g0FjDgSgys1Z1UoprwC1Jh7st0WRVj=
+xgXznJUUs8-3D" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"heig=
+ht:1px !important;width:1px !important;border-width:0 !important;margin-top=
+:0 !important;margin-bottom:0 !important;margin-right:0 !important;margin-l=
+eft:0 !important;padding-top:0 !important;padding-bottom:0 !important;paddi=
+ng-right:0 !important;padding-left:0 !important;"/></body>
+</html>
+
+
+
+
